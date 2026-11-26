@@ -1,0 +1,121 @@
+version: "3.8"
+
+services:
+  raft_node_1:
+    build: .
+    container_name: node_1
+    environment:
+      - NODE_ID=1
+      - DBURL=https://raft-3d-printer-default-rtdb.asia-southeast1.firebasedatabase.app/
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - raft_net
+    ports:
+    - "5001:5000"
+
+  raft_node_2:
+    build: .
+    container_name: node_2
+    environment:
+      - NODE_ID=2
+      - DBURL=https://raft-3d-printer-node2.asia-southeast1.firebasedatabase.app/
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - raft_net
+    ports:
+      - "5002:5000"
+
+  raft_node_3:
+    build: .
+    container_name: node_3
+    environment:
+      - NODE_ID=3
+      - DBURL=https://raft-3d-printer-node3.asia-southeast1.firebasedatabase.app/
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - raft_net
+    ports:
+    - "5003:5000"
+
+  raft_node_4:
+    build: .
+    container_name: node_4
+    environment:
+      - NODE_ID=4
+      - DBURL=https://raft-3d-printer-node4.asia-southeast1.firebasedatabase.app/
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - raft_net
+    ports:
+    - "5004:5000"
+
+  raft_node_5:
+    build: .
+    container_name: node_5
+    environment:
+      - NODE_ID=5
+      - DBURL=https://raft-3d-printer-node5.asia-southeast1.firebasedatabase.app/
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - raft_net
+    ports:
+    - "5005:5000"
+
+  raft_node_6:
+    build: .
+    container_name: node_6
+    environment:
+      - NODE_ID=6
+      - DBURL=https://raft-3d-printer-node6.asia-southeast1.firebasedatabase.app/
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - raft_net
+    ports:
+    - "5006:5000"
+
+  raft_node_7:
+    build: .
+    container_name: node_7
+    environment:
+      - NODE_ID=7
+      - DBURL=https://raft-3d-printer-node7.asia-southeast1.firebasedatabase.app/
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - raft_net
+    ports:
+    - "5007:5000"
+
+  raft_node_8:
+    build: .
+    container_name: node_8
+    environment:
+      - NODE_ID=8
+      - DBURL=https://raft-3d-printer-node8.asia-southeast1.firebasedatabase.app/
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - raft_net
+    ports:
+    - "5008:5000"
+
+  client:
+      build: .
+      container_name: client
+      volumes:
+        - ./node_status.json:/app/node_status.json
+        - ./logs:/app/logs
+      networks:
+        - raft_net
+      stdin_open: true
+      tty: true
+      entrypoint: ["/bin/bash"]
+
+networks:
+  raft_net:
